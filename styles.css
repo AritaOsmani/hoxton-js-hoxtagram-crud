@@ -106,6 +106,7 @@
     border: none;
     font-size: 0.8rem;
     
+    
   }
   
   .comment-input:focus {
@@ -146,7 +147,31 @@
   .comment-form.image-card .comment-button {
     font-size: 1rem;
   }
-  
+  .comment{
+    display: grid;
+    grid-template-columns: auto repeat(2,50px);
+    /* gap:5px; */
+    place-items:start ;
+    
+  }
+  .comment button{
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    padding:5px;
+  }
+  .delte-button{
+      
+      color:rgba(255, 0, 0, 0.8);
+      background-color: white;
+      
+  }
+  .edit-button{
+      color:royalblue;
+      background-color: white;
+      margin-left:15px;
+      
+  }
   .new-post-article{
     display: grid;
     place-items: start;
