@@ -15,6 +15,20 @@ function createCard(item) {
     titleOfImage.setAttribute('class', 'title');
     titleOfImage.textContent = item["title"];
 
+    const deletePost = document.createElement('button');
+    deletePost.setAttribute('class', 'delete-button');
+    deletePost.textContent = 'Delete Post';
+
+    deletePost.addEventListener('click', function () {
+        state.images = state.images.filter(function (img) {
+            return img.id !== item.id;
+        })
+        deleteImageFromServer(item.id);
+        render();
+    })
+
+    titleOfImage.append(deletePost);
+
     const imageEl = document.createElement('img');
     imageEl.setAttribute('class', 'image');
     imageEl.setAttribute('src', item["image"]);
@@ -55,7 +69,7 @@ function createCard(item) {
         commentElement.setAttribute('class', 'comment');
         const deleteBtn = document.createElement('button');
         deleteBtn.textContent = 'Delete';
-        deleteBtn.setAttribute('class', 'delte-button');
+        deleteBtn.setAttribute('class', 'delete-button');
 
         deleteBtn.addEventListener('click', function () {
             state.comments = state.comments.filter(function (c) {
@@ -225,6 +239,11 @@ function updateImage(image) {
 }
 function deleteCommentFromServer(id) {
     fetch(`http://localhost:3000/comments/${id}`, {
+        method: 'DELETE'
+    })
+}
+function deleteImageFromServer(id) {
+    fetch(`http://localhost:3000/images/${id}`, {
         method: 'DELETE'
     })
 }

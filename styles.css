@@ -120,6 +120,7 @@
     color: rgb(92, 114, 238);
     cursor: pointer;
     transition: color 300ms;
+    margin-left:15px;
   }
   
   .comment-button:hover {
@@ -160,8 +161,9 @@
     font-size: 12px;
     padding:5px;
   }
-  .delte-button{
-      
+  .delete-button{
+    border: none;
+    cursor: pointer;
       color:rgba(255, 0, 0, 0.8);
       background-color: white;
       
@@ -194,6 +196,14 @@
    padding:5px;
    font-weight: bold;
    border-radius: 5px;
+  }
+  .title{
+      display: grid;
+      grid-template-columns: auto 100px;
+      
+  }
+  .title button{
+      margin-left: 15px;
   }
   .title-input{
     display: block;
