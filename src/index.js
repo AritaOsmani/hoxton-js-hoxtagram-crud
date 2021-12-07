@@ -50,9 +50,27 @@ function createCard(item) {
         return element["imageId"] === item.id;
     })
     for (const comment of matchedComments) {
+
         const commentElement = document.createElement('li');
+        commentElement.setAttribute('class', 'comment');
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.setAttribute('class', 'delte-button');
+
+        deleteBtn.addEventListener('click', function () {
+            state.comments = state.comments.filter(function (c) {
+                return c.id !== comment.id;
+            })
+            deleteCommentFromServer(comment.id);
+            render();
+        })
+
+        const editBtn = document.createElement('button');
+        editBtn.textContent = 'Edit';
+        editBtn.setAttribute('class', 'edit-button');
 
         commentElement.textContent = comment["content"];
+        commentElement.append(editBtn, deleteBtn);
 
         comments.append(commentElement);
     }
@@ -203,6 +221,11 @@ function updateImage(image) {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(image)
+    })
+}
+function deleteCommentFromServer(id) {
+    fetch(`http://localhost:3000/comments/${id}`, {
+        method: 'DELETE'
     })
 }
 render();
