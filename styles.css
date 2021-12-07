@@ -153,6 +153,8 @@
     grid-template-columns: auto repeat(2,50px);
     /* gap:5px; */
     place-items:start ;
+    width:100%;
+   padding:5px 0;
     
   }
   .comment button{
@@ -211,4 +213,19 @@
   .new-post-title{
     font-size:1.5rem;
   }
-  
+  .com-form{
+      border:none;
+      display: grid;
+      grid-template-columns: 170px repeat(2,auto);
+     
+      padding:10px;
+  }
+  .com-input{
+      font-size:12px;
+     
+  }
+
+  .comment-btn{
+      margin-left:40px;
+      width:40px;
+  }

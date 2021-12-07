@@ -83,12 +83,26 @@ function createCard(item) {
         editBtn.textContent = 'Edit';
         editBtn.setAttribute('class', 'edit-button');
 
+        editBtn.addEventListener('click', function () {
+            commentElement.innerHTML = '';
+            const newInput = createNewCommentInput(comment);
+            commentElement.append(newInput)
+            // render()
+        })
+
         commentElement.textContent = comment["content"];
         commentElement.append(editBtn, deleteBtn);
 
         comments.append(commentElement);
     }
 
+    const commentForm = createCommentForm(item)
+
+    imageCard.append(titleOfImage, imageEl, likesSection, comments, commentForm);
+    cardSection.append(imageCard);
+}
+
+function createCommentForm(item) {
     const commentForm = document.createElement('form');
     commentForm.setAttribute('class', 'comment-form');
 
@@ -114,12 +128,8 @@ function createCard(item) {
 
 
     })
-
-    imageCard.append(titleOfImage, imageEl, likesSection, comments, commentForm);
-    cardSection.append(imageCard);
+    return commentForm;
 }
-
-
 function createNewForm() {
     const container = document.createElement('article');
     container.setAttribute('class', 'new-post-article');
@@ -163,7 +173,36 @@ function createNewForm() {
     container.append(title, formEl);
     cardSection.prepend(container);
 }
+function createNewCommentInput(item) {
+    const commentForm = document.createElement('form');
+    commentForm.setAttribute('class', ' com-form');
 
+    const commentInput = document.createElement('input');
+    commentInput.setAttribute('class', 'comment-input com-input');
+    commentInput.setAttribute('placeholder', 'Add a new comment..');
+
+    const commentBtn = document.createElement('button');
+    commentBtn.setAttribute('class', 'comment-button comment-btn');
+    commentBtn.textContent = 'Post';
+
+    commentForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const content = commentInput.value;
+        item.content = content;
+        updateComments(item);
+        commentInput.value = ''
+        render();
+
+    })
+    const cancelBtn = document.createElement('button');
+    cancelBtn.textContent = 'Cancel';
+    cancelBtn.setAttribute('class', 'comment-button');
+    cancelBtn.addEventListener('click', function () {
+        render();
+    })
+    commentForm.append(commentInput, commentBtn, cancelBtn);
+    return commentForm;
+}
 function renderNewFormCard() {
 
     createNewForm();

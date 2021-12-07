@@ -4,7 +4,8 @@
       "id": 1,
       "title": "Coder dog",
       "likes": 10,
-      "image": "./assets/coder-dog.png"
+      "image": "./assets/coder-dog.png",
+      "content": "new comment"
     },
     {
       "id": 2,
@@ -27,14 +28,6 @@
   ],
   "comments": [
     {
-      "id": 1,
-      "content": "What a cute dog!",
-      "imageId": 1,
-      "title": "Coder dog",
-      "likes": 11,
-      "image": "./assets/coder-dog.png"
-    },
-    {
       "id": 2,
       "content": "He has the paws for this!",
       "imageId": 2,
@@ -52,7 +45,7 @@
     },
     {
       "imageId": 1,
-      "content": "Funny dog!!",
+      "content": "Great Dog",
       "id": 4,
       "title": "Coder Cat",
       "likes": 3,
