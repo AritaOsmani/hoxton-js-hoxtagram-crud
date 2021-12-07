@@ -24,11 +24,22 @@ function createCard(item) {
 
     const likes = document.createElement('span');
     likes.setAttribute('class', 'likes');
-    likes.textContent = item["likes"];
+    if (item.likes > 1) {
+        likes.textContent = item["likes"] + " likes";
+    } else {
+        likes.textContent = item["likes"] + " like";
+    }
+
 
     const likeBtn = document.createElement('button');
     likeBtn.setAttribute('class', 'like-button');
     likeBtn.textContent = '♥';
+
+    likeBtn.addEventListener('click', function () {
+        item.likes++;
+        updateImage(item);
+        render();
+    })
 
     likesSection.append(likes, likeBtn);
 
@@ -174,5 +185,24 @@ function addNewImageToTheServer(title, url) {
         },
         body: JSON.stringify({ "title": title, "likes": 2, "image": url })
     }).then((res) => res.json())
+}
+
+function updateComments(comment) {
+    fetch(`http://localhost:3000/comments/${comment.id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(comment)
+    })
+}
+function updateImage(image) {
+    fetch(`http://localhost:3000/images/${image.id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(image)
+    })
 }
 render();
